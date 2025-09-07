@@ -1,0 +1,72 @@
+import { borderColors, cn, playerColors } from "@/utils/Utils";
+import type { GameTurnDataProps } from "./SnakeAndLadderGame";
+
+interface playerDataProps {
+  gameTurnData: GameTurnDataProps;
+  playerNames: string[];
+  playersWon: string[];
+  playerPosition: number[];
+}
+
+export const PlayerData = ({
+  gameTurnData,
+  playerNames,
+  playersWon = [],
+  playerPosition = [],
+}: playerDataProps) => {
+  return (
+    <div className="w-4/10 bg-gradient-to-r from-emerald-500 via-emerald-200 to-emerald-50 py-10 pl-15 relative font-sans">
+      <h1 className="font-bold text-5xl p-10 text-emerald-800">Player Data</h1>
+      <ul className="font-semibold text-3xl text-left list-disc">
+        Players Playing
+        {playerNames.map((player, index) => (
+          <li
+            key={index}
+            className="font-medium text-2xl text-left mt-5 items-center"
+          >
+            <span
+              className="border-4 rounded-full w-[25px] h-[25px] inline-block align-sub mr-5"
+              style={{
+                backgroundColor: playerColors[index],
+                borderColor: borderColors[index],
+              }}
+            ></span>
+            {player}
+            <span
+              className={cn(
+                "pl-4 text-green-500",
+                gameTurnData?.currIndex === index ? "text-green-800" : ""
+              )}
+            >
+              - AT {playerPosition[index]}
+            </span>
+            {gameTurnData?.currIndex === index ? (
+              <span className="border-4 rounded-full w-[20px] h-[20px] inline-block ml-10" />
+            ) : null}
+          </li>
+        ))}
+      </ul>
+      <ol className="font-semibold text-3xl text-left list-decimal mt-20">
+        Winners List
+        {playersWon.map((player, index) => {
+          const colorIndex = playerNames?.indexOf(player);
+          return (
+            <li
+              key={index}
+              className="font-medium text-2xl text-left mt-5 items-center"
+            >
+              <span
+                className="border-4 rounded-full w-[25px] h-[25px] inline-block align-sub mr-5"
+                style={{
+                  backgroundColor: playerColors[colorIndex],
+                  borderColor: borderColors[colorIndex],
+                }}
+              ></span>
+              {player}
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+};
