@@ -7,17 +7,13 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const DiceIcons = [Dice1, Dice2, Dice3, Dice4, Dice5, Dice6];
-export const borderColors = [
-  "rgba(0, 153, 0, .6)",
-  "rgba(66, 135, 245, .6)",
-  "rgba(245, 66, 105, .6)",
-  "rgba(245, 218, 66, .6)",
-];
 export const playerColors = [
   "rgba(0, 153, 0)",
   "rgba(66, 135, 245)",
   "rgba(245, 66, 105)",
   "rgba(245, 218, 66)",
+  "rgb(131, 89, 50)",
+  "rgb(52, 26, 89)",
 ];
 export function calculateDistance(
   x1: number,
@@ -50,43 +46,57 @@ export function getSnakeAndLadder(
   const ladderHeads = new Map();
   const ladderTails = new Map();
 
-  for (let i = 0; i < snakes; i++) {
-    let one = Math.floor(Math.random() * 98) + 2;
-    while (snakeAndLadderUsedMap.has(one)) {
-      one = Math.floor(Math.random() * 98) + 2;
-    }
-    snakeAndLadderUsedMap.add(one);
-    let two = Math.floor(Math.random() * 98) + 2;
-    while (snakeAndLadderUsedMap.has(two)) {
-      two = Math.floor(Math.random() * 98) + 2;
-    }
-    snakeAndLadderUsedMap.add(two);
-    if (one < two) {
-      snakeHeads.set(two, one);
-      snakeTails.set(one, two);
-    } else {
-      snakeHeads.set(one, two);
-      snakeTails.set(two, one);
-    }
-  }
+  // one snakeHead between 91-99 and one snakeTail between 5-15
+  // one LadderHead between 81-90 and one LadderTail between 10-20
+  const setOne = Math.floor(Math.random() * 10) + 3;
+  const setTwo = Math.floor(Math.random() * 10) + 90;
+  snakeAndLadderUsedMap.add(setOne);
+  snakeAndLadderUsedMap.add(setOne + 10);
+  snakeAndLadderUsedMap.add(setTwo);
+  snakeAndLadderUsedMap.add(setTwo - 10);
+  snakeHeads.set(setTwo, setOne);
+  snakeTails.set(setOne, setTwo);
+  ladderHeads.set(setTwo - 10, setOne + 10);
+  ladderTails.set(setOne + 10, setTwo - 10);
 
-  for (let i = 0; i < ladders; i++) {
-    let one = Math.floor(Math.random() * 98) + 2;
-    while (snakeAndLadderUsedMap.has(one)) {
-      one = Math.floor(Math.random() * 98) + 2;
+  for (let i = 0; i < snakes - 1 || i < ladders - 1; i++) {
+    if (i < snakes - 1) {
+      let oneSnake = Math.floor(Math.random() * 98) + 2;
+      while (snakeAndLadderUsedMap.has(oneSnake)) {
+        oneSnake = Math.floor(Math.random() * 98) + 2;
+      }
+      snakeAndLadderUsedMap.add(oneSnake);
+      let twoSnake = Math.floor(Math.random() * 98) + 2;
+      while (snakeAndLadderUsedMap.has(twoSnake)) {
+        twoSnake = Math.floor(Math.random() * 98) + 2;
+      }
+      snakeAndLadderUsedMap.add(twoSnake);
+      if (oneSnake < twoSnake) {
+        snakeHeads.set(twoSnake, oneSnake);
+        snakeTails.set(oneSnake, twoSnake);
+      } else {
+        snakeHeads.set(oneSnake, twoSnake);
+        snakeTails.set(twoSnake, oneSnake);
+      }
     }
-    snakeAndLadderUsedMap.add(one);
-    let two = Math.floor(Math.random() * 98) + 2;
-    while (snakeAndLadderUsedMap.has(two)) {
-      two = Math.floor(Math.random() * 98) + 2;
-    }
-    snakeAndLadderUsedMap.add(two);
-    if (one < two) {
-      ladderHeads.set(two, one);
-      ladderTails.set(one, two);
-    } else {
-      ladderHeads.set(one, two);
-      ladderTails.set(two, one);
+    if (i < ladders - 1) {
+      let oneLadder = Math.floor(Math.random() * 98) + 2;
+      while (snakeAndLadderUsedMap.has(oneLadder)) {
+        oneLadder = Math.floor(Math.random() * 98) + 2;
+      }
+      snakeAndLadderUsedMap.add(oneLadder);
+      let twoLadder = Math.floor(Math.random() * 98) + 2;
+      while (snakeAndLadderUsedMap.has(twoLadder)) {
+        twoLadder = Math.floor(Math.random() * 98) + 2;
+      }
+      snakeAndLadderUsedMap.add(twoLadder);
+      if (oneLadder < twoLadder) {
+        ladderHeads.set(twoLadder, oneLadder);
+        ladderTails.set(oneLadder, twoLadder);
+      } else {
+        ladderHeads.set(oneLadder, twoLadder);
+        ladderTails.set(twoLadder, oneLadder);
+      }
     }
   }
   return {
