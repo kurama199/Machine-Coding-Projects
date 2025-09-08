@@ -16,6 +16,7 @@ import { RandomIcon } from "@/utils/RandomIcon";
 import { SnakeOrLadderBlock } from "@/utils/SnakeOrLadderBlock";
 import {
   cn,
+  gameTitle,
   getSnakeAndLadder,
   playerColors,
   type snakeAndLadderObject,
@@ -213,11 +214,9 @@ export const GameContainer = ({
     });
   };
   return (
-    <div className="items-center justify-center flex flex-col w-full">
-      <h1 className="font-bold font-serif text-5xl p-10 text-emerald-800">
-        Snake and Ladder Game
-      </h1>
-      <div className="grid grid-rows-10 grid-cols-10 gap-1">
+    <div className="items-center justify-center flex flex-col w-full mt-5">
+      <h1 className="game-title">{gameTitle}</h1>
+      <div className="grid grid-rows-10 grid-cols-10">
         {Array.from({ length: 100 }).map((_, index) => {
           const row = Math.floor(index / 10);
           const col = index - row * 10;
@@ -310,7 +309,7 @@ export const GameContainer = ({
       </div>
       <div
         className={cn(
-          "mt-10 font-semibold font-serif",
+          "mt-10 font-semibold font-sans",
           winners.length === playerNames.length ? "font-bold text-3xl " : ""
         )}
       >

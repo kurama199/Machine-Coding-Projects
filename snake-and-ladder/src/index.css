@@ -12,6 +12,12 @@
   }
 }
 
+@layer utilities {
+  .game-title {
+    @apply font-bold font-sans text-5xl p-5 text-emerald-800;
+  }
+}
+
 #root {
   max-width: 100%;
   margin: 0 auto;

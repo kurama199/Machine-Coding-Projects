@@ -13,7 +13,7 @@ export const playerColors = [
   "rgba(245, 66, 105)",
   "rgba(245, 218, 66)",
   "rgb(131, 89, 50)",
-  "rgb(52, 26, 89)",
+  "rgb(52, 26, 89, 0.6)",
 ];
 export function calculateDistance(
   x1: number,
@@ -106,3 +106,5 @@ export function getSnakeAndLadder(
     ladderTails,
   };
 }
+
+export const gameTitle = "Snake and Ladder Game";

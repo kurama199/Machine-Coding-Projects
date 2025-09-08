@@ -9,7 +9,7 @@ export const PlayerData = ({
 }: playerDataProps) => {
   return (
     <div className="w-4/10 bg-gradient-to-r from-emerald-500 via-emerald-200 to-emerald-50 py-10 pl-15 relative font-sans">
-      <h1 className="font-bold text-5xl p-10 text-emerald-800">Player Data</h1>
+      <h1 className="game-title">Player Data</h1>
       <ul className="font-semibold text-2xl text-left list-disc">
         Players Playing
         {playerNames.map((player, index) => {

@@ -53,12 +53,6 @@ export const SnakeAndLadderGame = ({
           <span className="font-bold">ST -</span> Snake Tail
         </div>
         <div className="font-sans">
-          <span className="font-bold">SH -</span> Snake Head
-        </div>
-        <div className="font-sans">
-          <span className="font-bold">LT -</span> Ladder Tail
-        </div>
-        <div className="font-sans">
           <span className="font-bold">LH -</span> Ladder Head
         </div>
       </div>
