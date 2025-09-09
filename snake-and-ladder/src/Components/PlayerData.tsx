@@ -1,5 +1,6 @@
 import { cn, playerColors } from "@/utils/Utils";
 import type { playerDataProps } from "@/utils/Interfaces";
+import { Dices } from "lucide-react";
 
 export const PlayerData = ({
   gameTurnData,
@@ -9,7 +10,7 @@ export const PlayerData = ({
 }: playerDataProps) => {
   return (
     <div className="w-4/10 bg-gradient-to-r from-emerald-500 via-emerald-200 to-emerald-50 py-10 pl-15 relative font-sans">
-      <h1 className="game-title">Player Data</h1>
+      <h1 className="game-title">Players Data</h1>
       <ul className="font-semibold text-2xl text-left list-disc">
         Players Playing
         {playerNames.map((player, index) => {
@@ -37,7 +38,7 @@ export const PlayerData = ({
                 - AT {playerPosition[index]}
               </span>
               {gameTurnData?.currIndex === index ? (
-                <span className="border-4 rounded-full w-[20px] h-[20px] inline-block ml-10" />
+                <Dices className="inline ml-5" />
               ) : null}
             </li>
           );

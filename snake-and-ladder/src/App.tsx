@@ -66,7 +66,7 @@ function App() {
                 name={inputNames.snake}
               />
               <AddInput
-                title="Select number of Ladder(max-15):"
+                title="Select number of Ladders(max-15):"
                 type="number"
                 placeholder="10"
                 min={0}
